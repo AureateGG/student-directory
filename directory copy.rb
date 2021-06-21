@@ -1,15 +1,15 @@
 
 students1 =[
     {name: "Dr. Hannibal Lecter", cohort: :november},
-    {name: "Darth Vader", cohort: :november},
+    {name: "Darth Vader", cohort: :september},
     {name: "Nurse Ratched", cohort: :november},
-    {name: "Michael Corleone", cohort: :november}, 
+    {name: "Michael Corleone", cohort: :may}, 
     {name: "Alex DeLarge", cohort: :november},
     {name: "The Wicked Witch of the West", cohort: :november}, 
     {name: "Terminator", cohort: :november},
-    {name: "Freddy Krueger", cohort: :november},
-    {name: "The Joker", cohort: :november},
-    {name: "Joffrey Baratheon", cohort: :november},
+    {name: "Freddy Krueger", cohort: :may},
+    {name: "The Joker", cohort: :may},
+    {name: "Joffrey Baratheon", cohort: :may},
     {name: "Norman Bates", cohort: :november}]
 
 
@@ -41,7 +41,25 @@ def print_header
     puts "______________"
 end 
 
-def print(students)
+def print_new(students)
+    by_cohort = {}
+    students.each do |x|
+      category = x[:cohort]
+    
+      if by_cohort[category] == nil
+        by_cohort[category] = []
+      end
+    
+      by_cohort[category].push(x[:name])
+    end
+    by_cohort.each do |name|
+        puts name
+        puts "____________"
+    end
+end
+
+
+def print_old(students)
     students.each_with_index do |student, index|
         if student[:name].length < 12 && student[:name][0,1] == "T"
         puts "#{index + 1}. #{student[:name].center(12,"-")} (#{student[:cohort]} cohort) #{student[:country]}"
@@ -50,12 +68,16 @@ def print(students)
 end
 
 def print_footer(names)
-    puts "Overall, we have #{names.count} great students"
+    if names.count == 1
+        puts "We have 1 student"
+    else    
+        puts "Overall, we have #{names.count} great students"
+    end
 end
 
 
 students = input_students
 print_header
-print(students)
+print_new(students)
 print_footer(students)
 
