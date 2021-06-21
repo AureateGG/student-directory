@@ -13,8 +13,8 @@ students1 =[
     {name: "Norman Bates", cohort: :november}]
 
 
-cohorts = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october",
-"november", "december"]   
+$months = [:january, :february, :march, :april, :may, :june, :july, :august, :september, :october,
+:november, :december]   
 def input_students
     puts "Please enter the names and the cohort of the students"
     puts "To finish, type done"
@@ -25,8 +25,12 @@ def input_students
         split = input.split(" ")
         name = split.shift
         cohort = split.join.to_sym
-        students << {name: name, cohort: cohort, country: :UK}
-        puts "Now we have #{students.count} students"
+        if $months.include?(cohort)
+          students << {name: name, cohort: cohort, country: :UK}
+          puts "Now we have #{students.count} students"
+        else 
+        puts "spelling mistake try again"
+        end       
         input = gets.chomp
     end
     students
