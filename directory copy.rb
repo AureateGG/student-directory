@@ -15,6 +15,31 @@ students1 =[
 
 $months = [:january, :february, :march, :april, :may, :june, :july, :august, :september, :october,
 :november, :december]   
+def interactive_menu
+    students =[]
+    loop do
+        puts "1. Input the students"
+        puts "2. Show the students"
+        puts "9. Exit"
+        
+    selection = gets.chomp
+
+    case selection
+    when "1"
+    students = input_students
+    when "2"
+    print_header
+    print_old(students)
+    print_footer(students)
+    when "9"
+        break
+    else
+    puts "try again"
+    end
+    end
+end
+
+
 def input_students
     puts "Please enter the names and the cohort of the students"
     puts "To finish, type done"
@@ -76,8 +101,5 @@ def print_footer(names)
 end
 
 
-students = input_students
-print_header
-print_new(students)
-print_footer(students)
+interactive_menu
 
